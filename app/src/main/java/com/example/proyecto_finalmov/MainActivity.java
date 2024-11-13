@@ -1,6 +1,8 @@
+
 package com.example.proyecto_finalmov;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -81,7 +83,13 @@ public class MainActivity extends AppCompatActivity {
         // Configurar el botón de inicio en el menú para regresar al menú principal
         findViewById(R.id.homeButton).setOnClickListener(v -> openMenuPage());
 
-        // Configuración adicional para otros elementos del menú si es necesario
-        // Ejemplo: Configurar cada ImageButton del menú si se necesitan acciones específicas
+        // Configurar el botón de usuario para abrir la pantalla de usuario
+        findViewById(R.id.usuarioButton).setOnClickListener(v -> openUserPreferencesPage());
+    }
+
+    private void openUserPreferencesPage() {
+        // Abre la actividad UserPreferences
+        Intent intent = new Intent(MainActivity.this, UserPreferences.class);
+        startActivity(intent);
     }
 }

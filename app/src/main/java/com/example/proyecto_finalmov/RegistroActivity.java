@@ -27,18 +27,18 @@ public class RegistroActivity extends AppCompatActivity {
 
         setupAgeSpinner();
 
-        registerButton.setOnClickListener(v -> {
-            String username = usernameEditText.getText().toString().trim();
-            String age = ageSpinner.getSelectedItem().toString();
-
-            if (!username.isEmpty()) {
-                UserPreferences.saveUserData(this, username, age);
-                Intent intent = new Intent(RegistroActivity.this, MenuPrincipalAct.class);
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, "Por favor ingrese todos los datos", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        registerButton.setOnClickListener(v -> {
+//            String username = usernameEditText.getText().toString().trim();
+//            String age = ageSpinner.getSelectedItem().toString();
+//
+//            if (!username.isEmpty()) {
+//                UserPreferences.saveUserData(this, username, age);
+//                Intent intent = new Intent(RegistroActivity.this, MenuPrincipalAct.class);
+//                startActivity(intent);
+//            } else {
+//                Toast.makeText(this, "Por favor ingrese todos los datos", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void setupAgeSpinner() {
