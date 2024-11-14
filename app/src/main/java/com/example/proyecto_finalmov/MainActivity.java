@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         openMenuPage();
     }
 
+
     private void openMenuPage() {
         setContentView(R.layout.menu_principal);
 
@@ -85,11 +86,18 @@ public class MainActivity extends AppCompatActivity {
 
         // Configurar el botón de usuario para abrir la pantalla de usuario
         findViewById(R.id.usuarioButton).setOnClickListener(v -> openUserPreferencesPage());
+
+        findViewById(R.id.cicloagua).setOnClickListener(v -> openCicloAguaPage());
     }
 
     private void openUserPreferencesPage() {
         // Abre la actividad UserPreferences
         Intent intent = new Intent(MainActivity.this, UserPreferences.class);
+        startActivity(intent);
+    }
+
+    private void openCicloAguaPage() {
+        Intent intent = new Intent(MainActivity.this, CicloAguaAct.class);
         startActivity(intent);
     }
 }

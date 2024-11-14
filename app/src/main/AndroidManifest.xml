@@ -21,7 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserPreferences"/>
+        <activity android:name=".InicioActivity" />
+        <activity android:name=".RegistroActivity" />
+        <activity android:name=".MenuPrincipalAct" />
+        <activity android:name=".CicloAguaAct" />
+        <activity android:name=".UserPreferences" />
+
     </application>
 
 </manifest>

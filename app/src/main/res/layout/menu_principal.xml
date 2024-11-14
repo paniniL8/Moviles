@@ -18,6 +18,7 @@
         android:layout_marginTop="80dp">
 
         <ImageButton
+            android:id="@+id/cicloagua"
             android:layout_width="350dp"
             android:layout_height="110dp"
             android:src="@drawable/cicloagua"

@@ -16,31 +16,68 @@
         android:gravity="center">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:text="Bienvenido a la aventura, conoce el mundo con nosotros"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:background="#a2f9b3"
+            android:padding="6dp"/>
+
+        <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="usuario"
-            android:textSize="18sp"
+            android:text="Usuario"
+            android:textSize="24sp"
+            android:textStyle="bold"
             />
         <TextView
             android:id="@+id/ageTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edad"
-            android:textSize="18sp"/>
+            android:text="Edad:"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/levelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nivel"
-            android:textSize="18sp"/>
+            android:text="Nivel: "
+            android:textSize="24sp"
+            android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/backButton"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Volver"
-            android:layout_gravity="center" />
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/homeButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:background="@drawable/fondoredondo"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/baseline_home_24" />
+
+            <ImageButton
+                android:id="@+id/music"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:background="@drawable/fondoredondo"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/baseline_music_off_24" />
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
