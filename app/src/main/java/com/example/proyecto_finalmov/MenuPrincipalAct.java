@@ -19,6 +19,8 @@ public class MenuPrincipalAct extends AppCompatActivity {
         ImageButton usuarioButton = findViewById(R.id.usuarioButton);
         ImageButton cicloAguaButton = findViewById(R.id.cicloagua);
         ImageButton ecosistemaButton = findViewById(R.id.ecosistemas);
+        ImageButton sistemasolButton = findViewById(R.id.sistemaSol);
+        ImageButton cuerpohumButton = findViewById(R.id.cuerpoHum);
 
         homeButton.setOnClickListener(v -> {
             Intent intent = new Intent(MenuPrincipalAct.this, MenuPrincipalAct.class);
@@ -43,6 +45,16 @@ public class MenuPrincipalAct extends AppCompatActivity {
                 Log.e("MenuPrincipalAct", "Error al abrir EcosistemaAct", e);
                 Toast.makeText(this, "No se puede abrir EcosistemaAct. Verifica el diseño.", Toast.LENGTH_LONG).show();
             }
+        });
+
+        sistemasolButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MenuPrincipalAct.this, SistemaSolarAct.class);
+            startActivity(intent);
+        });
+
+        cuerpohumButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MenuPrincipalAct.this, CuerpoHumanoAct.class);
+            startActivity(intent);
         });
 
     }

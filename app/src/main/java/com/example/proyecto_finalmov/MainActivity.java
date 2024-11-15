@@ -87,8 +87,11 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.cicloagua).setOnClickListener(v -> openCicloAguaPage());
 
-        // Cerrar la aplicación cuando se presione el botón ecosistemas
         findViewById(R.id.ecosistemas).setOnClickListener(v -> openEcosistema());
+
+        findViewById(R.id.sistemaSol).setOnClickListener(v -> openSistemaSol());
+
+        findViewById(R.id.cuerpoHum).setOnClickListener(v -> openCuerpoHum());
     }
 
 
@@ -105,6 +108,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void openEcosistema() {
         Intent intent = new Intent(MainActivity.this, EcosistemaAct.class);
+        startActivity(intent);
+    }
+
+    private void openSistemaSol() {
+        Intent intent = new Intent(MainActivity.this, SistemaSolarAct.class);
+        startActivity(intent);
+    }
+
+    private void openCuerpoHum() {
+        Intent intent = new Intent(MainActivity.this, CuerpoHumanoAct.class);
         startActivity(intent);
     }
 

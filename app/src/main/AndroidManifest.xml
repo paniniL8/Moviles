@@ -28,6 +28,8 @@
         <activity android:name=".UserPreferences" />
         <activity android:name=".EcosistemaAct"/>
         <activity android:name=".RetroalimentacionAct" />
+        <activity android:name=".SistemaSolarAct" />
+        <activity android:name=".CuerpoHumanoAct" />
 
 
 

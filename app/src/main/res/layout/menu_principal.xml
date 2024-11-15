@@ -25,6 +25,7 @@
             android:scaleType="fitXY"
             android:background="@null"/>
         <ImageButton
+            android:id="@+id/sistemaSol"
             android:layout_width="350dp"
             android:layout_height="110dp"
             android:scaleType="centerCrop"
@@ -38,6 +39,7 @@
             android:src="@drawable/ecosistema"
             android:background="@null"/>
         <ImageButton
+            android:id="@+id/cuerpoHum"
             android:layout_width="350dp"
             android:layout_height="110dp"
             android:scaleType="centerCrop"
