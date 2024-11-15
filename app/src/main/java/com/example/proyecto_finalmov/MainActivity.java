@@ -81,14 +81,16 @@ public class MainActivity extends AppCompatActivity {
     private void openMenuPage() {
         setContentView(R.layout.menu_principal);
 
-        // Configurar el botón de inicio en el menú para regresar al menú principal
         findViewById(R.id.homeButton).setOnClickListener(v -> openMenuPage());
 
-        // Configurar el botón de usuario para abrir la pantalla de usuario
         findViewById(R.id.usuarioButton).setOnClickListener(v -> openUserPreferencesPage());
 
         findViewById(R.id.cicloagua).setOnClickListener(v -> openCicloAguaPage());
+
+        // Cerrar la aplicación cuando se presione el botón ecosistemas
+        findViewById(R.id.ecosistemas).setOnClickListener(v -> openEcosistema());
     }
+
 
     private void openUserPreferencesPage() {
         // Abre la actividad UserPreferences
@@ -100,4 +102,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, CicloAguaAct.class);
         startActivity(intent);
     }
+
+    private void openEcosistema() {
+        Intent intent = new Intent(MainActivity.this, EcosistemaAct.class);
+        startActivity(intent);
+    }
+
 }

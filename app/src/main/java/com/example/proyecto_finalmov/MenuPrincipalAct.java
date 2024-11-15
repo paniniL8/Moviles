@@ -2,7 +2,9 @@ package com.example.proyecto_finalmov;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +18,7 @@ public class MenuPrincipalAct extends AppCompatActivity {
         ImageButton homeButton = findViewById(R.id.homeButton);
         ImageButton usuarioButton = findViewById(R.id.usuarioButton);
         ImageButton cicloAguaButton = findViewById(R.id.cicloagua);
+        ImageButton ecosistemaButton = findViewById(R.id.ecosistemas);
 
         homeButton.setOnClickListener(v -> {
             Intent intent = new Intent(MenuPrincipalAct.this, MenuPrincipalAct.class);
@@ -31,5 +34,16 @@ public class MenuPrincipalAct extends AppCompatActivity {
             Intent intent = new Intent(MenuPrincipalAct.this, CicloAguaAct.class);
             startActivity(intent);
         });
+
+        ecosistemaButton.setOnClickListener(v -> {
+            try {
+                Intent intent = new Intent(MenuPrincipalAct.this, EcosistemaAct.class);
+                startActivity(intent);
+            } catch (Exception e) {
+                Log.e("MenuPrincipalAct", "Error al abrir EcosistemaAct", e);
+                Toast.makeText(this, "No se puede abrir EcosistemaAct. Verifica el diseño.", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 }

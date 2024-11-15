@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/username"
@@ -12,7 +13,22 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
-        />
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"/>
+    
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="@drawable/fondoredondo"
+        android:padding="8dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/baseline_home_24" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+
+   
+

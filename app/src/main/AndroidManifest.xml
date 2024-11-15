@@ -26,6 +26,10 @@
         <activity android:name=".MenuPrincipalAct" />
         <activity android:name=".CicloAguaAct" />
         <activity android:name=".UserPreferences" />
+        <activity android:name=".EcosistemaAct"/>
+        <activity android:name=".RetroalimentacionAct" />
+
+
 
     </application>
 

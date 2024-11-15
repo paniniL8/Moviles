@@ -31,6 +31,7 @@
             android:src="@drawable/sistemasol"
             android:background="@null"/>
         <ImageButton
+            android:id="@+id/ecosistemas"
             android:layout_width="350dp"
             android:layout_height="110dp"
             android:scaleType="centerCrop"
