@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Configuración del botón "INICIAR!!" para ir a la pantalla de registro
-        Button startButton = findViewById(R.id.startButton);
+        Button startButton = findViewById(R.id.RegButton);
         startButton.setOnClickListener(v -> openRegistrationPage());
     }
 
@@ -59,23 +59,25 @@ public class MainActivity extends AppCompatActivity {
         Spinner ageSpinner = findViewById(R.id.ageSpinner);
 
         String username = usernameEditText.getText().toString().trim();
-        String age = ageSpinner.getSelectedItem().toString();
+        String ageString = ageSpinner.getSelectedItem().toString();
 
         if (username.isEmpty()) {
             Toast.makeText(this, "Por favor ingrese un nombre de usuario", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Guardar los datos en SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(KEY_USERNAME, username);
-        editor.putString(KEY_AGE, age);
-        editor.apply();
+        int age = Integer.parseInt(ageString);
+
+        // Guardar los datos en SQLite
+        DBSQLite dbHelper = new DBSQLite(this);
+        dbHelper.guardarUsuario(username, age);
+
+        Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
 
         // Ir a la página del menú principal
         openMenuPage();
     }
+
 
 
     private void openMenuPage() {

@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/username"
+    <!-- Fondo -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/fondosis"
+        android:scaleType="centerCrop"/>
+
+    <!-- Animación del cohete -->
+    <ImageView
+        android:id="@+id/animacionCohete"
+        android:layout_width="300dp"
+        android:layout_height="495dp"
+        android:layout_gravity="center"
+        android:elevation="2dp"/>
+
+    <!-- Botón para iniciar el cuestionario -->
+    <Button
+        android:id="@+id/startQuizButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hola mundo "
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="200dp"/>
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="50dp"
+        android:text="Iniciar Cuestionario"
+        android:background="@drawable/boton_personalizado"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:elevation="4dp"/>
 
-    <ImageButton
-        android:id="@+id/homeButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:background="@drawable/fondoredondo"
-        android:padding="8dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/baseline_home_24" />
-
-
-</LinearLayout>
+</FrameLayout>

@@ -1,87 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:src="@drawable/usuario"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:text="Bienvenido a la aventura, conoce el mundo con nosotros"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:background="#a2f9b3"
-            android:padding="6dp"/>
-
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Usuario"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:id="@+id/ageTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edad:"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/levelTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nivel: "
-            android:textSize="24sp"
-            android:textStyle="bold"/>
+        android:padding="16dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center">
 
-            <ImageButton
-                android:id="@+id/homeButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:background="@drawable/fondoredondo"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/baseline_home_24" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:text="Bienvenido a la aventura, conoce el mundo con nosotros"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                android:background="#a2f9b3"
+                android:padding="6dp" />
 
-            <ImageButton
-                android:id="@+id/music"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:background="@drawable/fondoredondo"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/baseline_music_off_24" />
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Usuario:"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
 
+            <TextView
+                android:id="@+id/ageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edades:"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <ImageButton
+                    android:id="@+id/homeButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/fondoredondo"
+                    android:padding="8dp"
+                    android:src="@drawable/baseline_home_24" />
+
+                <ImageButton
+                    android:id="@+id/music"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/fondoredondo"
+                    android:padding="8dp"
+                    android:src="@drawable/baseline_music_off_24" />
+            </LinearLayout>
         </LinearLayout>
-
-
-    </LinearLayout>
-
-
-
-
+    </ScrollView>
 </FrameLayout>
