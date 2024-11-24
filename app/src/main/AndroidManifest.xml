@@ -26,7 +26,9 @@
         <activity android:name=".MenuPrincipalAct" />
         <activity android:name=".CicloAguaAct" />
         <activity android:name=".UserPreferences" />
-        <activity android:name=".EcosistemaAct"/>
+        <activity
+            android:name=".EcosistemaAct"
+            android:exported="false" />
         <activity android:name=".RetroalimentacionAct" />
         <activity android:name=".SistemaSolarAct" />
         <activity android:name=".CuerpoHumanoAct" />

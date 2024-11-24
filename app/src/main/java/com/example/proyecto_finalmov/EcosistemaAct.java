@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.GridLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,7 +32,7 @@ public class EcosistemaAct extends AppCompatActivity {
     private final String[] userMatches = new String[6];
 
     private TextView errorMessage;
-    private LinearLayout cardsContainer;
+    private GridLayout cardsContainer; // Cambiar de LinearLayout a GridLayout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

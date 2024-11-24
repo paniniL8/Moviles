@@ -180,4 +180,19 @@
             android:gravity="center"
             android:textColor="@android:color/darker_gray" />
     </GridLayout>
+
+    <!-- Error Message -->
+    <TextView
+    android:id="@+id/error_message"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/drop_area"
+    android:layout_marginBottom="16dp"
+    android:padding="12dp"
+    android:background="@android:color/holo_red_light"
+    android:text="¡Inténtalo de nuevo! El orden no es correcto. Revisa el orden de las etapas del ciclo del agua."
+    android:visibility="gone"
+    android:textColor="@android:color/white"
+    android:textAlignment="center" />
+
 </RelativeLayout>

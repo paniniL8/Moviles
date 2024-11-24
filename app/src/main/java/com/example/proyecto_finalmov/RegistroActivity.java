@@ -42,13 +42,31 @@ public class RegistroActivity extends AppCompatActivity {
 
             int age = Integer.parseInt(ageString);
 
-            dbHelper.guardarUsuario(username, age);
-            Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
+            // Verificar si el nombre de usuario ya existe
+            if (dbHelper.existeUsuario(username)) {
+                Toast.makeText(this, "El nombre de usuario ya está registrado. Intente con otro.", Toast.LENGTH_LONG).show();
+                return;
+            }
 
-            Intent intent = new Intent(RegistroActivity.this, MenuPrincipalAct.class);
-            startActivity(intent);
-            finish();
+            // Guardar en la base de datos
+            long userId = dbHelper.guardarUsuario(username, age);
+
+            if (userId != -1) {
+                // Registrar al usuario actual en la tabla sesion_actual
+                dbHelper.establecerUsuarioActual(userId, username, age);
+
+                // Mostrar mensaje de éxito
+                Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_LONG).show();
+
+                // Redirigir a la página de inicio (InicioActivity)
+                Intent intent = new Intent(RegistroActivity.this, InicioActivity.class);
+                startActivity(intent);
+                finish(); // Finalizar la actividad actual
+            } else {
+                Toast.makeText(this, "Error al registrar el usuario. Intente nuevamente.", Toast.LENGTH_SHORT).show();
+            }
         });
+
     }
 
     private void setupAgeSpinner() {

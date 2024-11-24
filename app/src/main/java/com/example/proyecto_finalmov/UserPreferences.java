@@ -1,12 +1,12 @@
 package com.example.proyecto_finalmov;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Vector;
 
 public class UserPreferences extends AppCompatActivity {
 
@@ -15,39 +15,63 @@ public class UserPreferences extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_usuario); // Cambia a dialog_usuario directamente
+        setContentView(R.layout.dialog_usuario);
 
         dbHelper = new DBSQLite(this);
 
-        // Obtener referencias a los TextView
+        // Referencias a los TextView
         TextView usernameTextView = findViewById(R.id.username);
         TextView ageTextView = findViewById(R.id.ageTextView);
 
-        // Mostrar los usuarios almacenados en la base de datos
-        mostrarUsuarioActual(usernameTextView, ageTextView);
+        // Obtener los datos del Intent
+        String nombre = getIntent().getStringExtra("nombre");
+        int edad = getIntent().getIntExtra("edad", -1);
 
-        // Configurar el botón para regresar al menú principal
+        Log.d("UserPreferences", "Datos recibidos del Intent: nombre=" + nombre + ", edad=" + edad); // DEPURACIÓN
+
+        if (nombre != null && edad != -1) {
+            // Mostrar datos del Intent (usuario recién registrado o iniciado sesión)
+            usernameTextView.setText("Nombre: " + nombre);
+            ageTextView.setText("Edad: " + edad);
+
+            Log.d("UserPreferences", "Datos mostrados desde el Intent: Nombre=" + nombre + ", Edad=" + edad);
+        } else {
+            // Si no hay datos en el Intent, cargar desde la tabla sesion_actual
+            mostrarUsuarioActual(usernameTextView, ageTextView);
+        }
+
+        // Botón para regresar al menú principal
         ImageButton homeButton = findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(v -> finish());
+        homeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(UserPreferences.this, MenuPrincipalAct.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void mostrarUsuarioActual(TextView usernameTextView, TextView ageTextView) {
-        // Obtener el último usuario registrado
-        String ultimoUsuario = dbHelper.obtenerUltimoUsuario();
+        String[] usuarioActual = dbHelper.obtenerUsuarioActual();
 
-        // Extraer nombre y edad del formato de texto
-        if (!ultimoUsuario.isEmpty()) {
-            String[] partes = ultimoUsuario.split(", ");
-            String nombre = partes[0].replace("Nombre: ", "");
-            String edad = partes[1].replace("Edad: ", "");
+        // DEPURACIÓN
+        if (usuarioActual != null) {
+            Log.d("UserPreferences", "Usuario actual cargado: " + usuarioActual[0] + ", " + usuarioActual[1]);
+        } else {
+            Log.d("UserPreferences", "No se encontró un usuario actual en la tabla sesion_actual.");
+        }
 
-            // Mostrar en los TextView
+        if (usuarioActual != null) {
+            String nombre = usuarioActual[0];
+            String edad = usuarioActual[1];
+
             usernameTextView.setText("Nombre: " + nombre);
             ageTextView.setText("Edad: " + edad);
         } else {
-            usernameTextView.setText("Nombre: N/A");
-            ageTextView.setText("Edad: N/A");
+            usernameTextView.setText("Nombre: No disponible");
+            ageTextView.setText("Edad: No disponible");
         }
     }
+
+
 
 }

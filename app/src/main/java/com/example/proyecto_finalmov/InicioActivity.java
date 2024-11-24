@@ -13,11 +13,19 @@ public class InicioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pag_inicio);
 
-        Button startButton = findViewById(R.id.startButton);
-        startButton.setOnClickListener(v -> {
+        // Botón para redirigir al registro de usuarios
+        Button RegButton = findViewById(R.id.RegButton);
+        RegButton.setOnClickListener(v -> {
             Intent intent = new Intent(InicioActivity.this, RegistroActivity.class);
             startActivity(intent);
         });
-    }
 
+        // Botón para iniciar sesión
+        Button startButton = findViewById(R.id.startButton);
+        startButton.setOnClickListener(v -> {
+            // Redirigir a MainActivity, que maneja el cuadro de diálogo
+            Intent intent = new Intent(InicioActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+    }
 }
