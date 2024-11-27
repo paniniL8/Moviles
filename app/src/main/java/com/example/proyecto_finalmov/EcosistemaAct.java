@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.GridLayout;
@@ -151,10 +150,11 @@ public class EcosistemaAct extends AppCompatActivity {
 
         if (isComplete) {
             Toast.makeText(this, "¡Felicitaciones! Has clasificado correctamente todos los ecosistemas.", Toast.LENGTH_LONG).show();
-            // Redirigir a la página de retroalimentación
-            Intent intent = new Intent(EcosistemaAct.this, RetroalimentacionAct.class);
+
+            // Redirigir a EcosistemaMatching tras completar el juego
+            Intent intent = new Intent(EcosistemaAct.this, EcosistemaSound.class);
             startActivity(intent);
-            finish(); // Finalizar la actividad actual
+            finish(); // Finalizar esta actividad
         }
     }
 }
