@@ -10,26 +10,27 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clasificación de ecosistemas"
+        android:text="Clasificación de Plantas"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
         android:textColor="@color/tit_dark"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentTop="true" /> 
+        android:layout_marginBottom="24dp"
+        android:layout_alignParentTop="true" />
+
     <!-- Instructions Section -->
     <TextView
         android:id="@+id/instructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Arrastra cada animal hacia su ecosistema correspondiente. Si el animal pertenece a ese ecosistema, ¡se quedará en su lugar!, Si no es correcto, el animal volverá a su posición inicial."
+        android:text="Arrastra cada planta hacia su ecosistema correspondiente. Si la planta pertenece a ese ecosistema, ¡se quedará en su lugar! Si no es correcto, la planta volverá a su posición inicial.\n¡Demuestra tus conocimientos sobre los ecosistemas!"
         android:textSize="13sp"
+        android:textColor="@color/tit_dark"
         android:textStyle="bold"
         android:layout_below="@id/title"
         android:layout_marginBottom="16dp" />
 
-    <!-- Animal Images Grid -->
+    <!-- Plant Cards Grid -->
     <GridLayout
         android:id="@+id/cards_container"
         android:layout_width="match_parent"
@@ -41,13 +42,13 @@
         android:alignmentMode="alignMargins"
         android:useDefaultMargins="true">
 
-        <!-- Animal Cards -->
+        <!-- Plant Cards -->
         <TextView
             android:id="@+id/card_humedales"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_columnWeight="1"
-            android:background="@drawable/garzahumedales"
+            android:background="@drawable/humedalplanta"
             android:gravity="center"
             android:padding="8dp"
             android:textColor="@android:color/black" />
@@ -57,7 +58,7 @@
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_columnWeight="1"
-            android:background="@drawable/venadobosque"
+            android:background="@drawable/bosquepino"
             android:gravity="center"
             android:padding="8dp"
             android:textColor="@android:color/black" />
@@ -67,27 +68,28 @@
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_columnWeight="1"
-            android:background="@drawable/suricatadesierto"
+            android:background="@drawable/desiertocactus"
             android:gravity="center"
             android:padding="8dp"
             android:textColor="@android:color/black" />
 
         <TextView
-            android:id="@+id/card_ecomarino"
+            android:id="@+id/card_sabana"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_columnWeight="1"
-            android:background="@drawable/tortugaecomarino"
+            android:background="@drawable/sabanaarbol"
             android:gravity="center"
             android:padding="8dp"
             android:textColor="@android:color/black" />
+
 
         <TextView
             android:id="@+id/card_tundra"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_columnWeight="1"
-            android:background="@drawable/polartundra"
+            android:background="@drawable/tundraplanta"
             android:gravity="center"
             android:padding="8dp"
             android:textColor="@android:color/black" />
@@ -97,7 +99,7 @@
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_columnWeight="1"
-            android:background="@drawable/tucanselva"
+            android:background="@drawable/selvasauce"
             android:gravity="center"
             android:padding="8dp"
             android:textColor="@android:color/black" />
@@ -109,21 +111,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/cards_container"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="24dp"
-        android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:rowCount="3"
+        android:alignmentMode="alignMargins"
         android:useDefaultMargins="true">
 
         <!-- Ecosystem Slots -->
-
         <TextView
             android:id="@+id/slot1"
             android:layout_width="0dp"
             android:layout_height="80dp"
-            android:layout_row="0"
-            android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             android:background="@drawable/bosque"
@@ -146,7 +145,7 @@
             android:layout_height="80dp"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            android:background="@drawable/ecomarino"
+            android:background="@drawable/sabanafondo"
             android:gravity="center"
             android:textColor="@android:color/darker_gray" />
 
@@ -183,16 +182,15 @@
 
     <!-- Error Message -->
     <TextView
-    android:id="@+id/error_message"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/drop_area"
-    android:layout_marginBottom="16dp"
-    android:padding="12dp"
-    android:background="@android:color/holo_red_light"
-    android:text="¡Inténtalo de nuevo! El orden no es correcto. Revisa el orden de las etapas del ciclo del agua."
-    android:visibility="gone"
-    android:textColor="@android:color/white"
-    android:textAlignment="center" />
-
+        android:id="@+id/error_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/drop_area"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp"
+        android:background="@android:color/holo_red_light"
+        android:text="¡Inténtalo de nuevo! Este tipo de planta no corresponde a este ecosistema."
+        android:visibility="gone"
+        android:textColor="@android:color/white"
+        android:textAlignment="center" />
 </RelativeLayout>

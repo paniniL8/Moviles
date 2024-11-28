@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_dark">
+    android:background="@drawable/fondoact">
+
 
     <!-- Título -->
     <TextView
@@ -13,12 +14,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Empareja los sonidos"
-        android:textColor="@color/text_white"
+        android:textColor="@color/tit_dark"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/progressBar" />
 
     <!-- Instrucciones -->
     <TextView
@@ -29,7 +30,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Toca los sonidos y selecciona la palabra que corresponde al sonido. ¡Empareja todos para ganar!"
-        android:textColor="@color/text_white"
+        android:textColor="@color/tit_dark"
         android:textSize="14sp"
         android:lineSpacingExtra="4dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +64,19 @@
             android:orientation="vertical"
             android:layout_marginStart="8dp" />
     </LinearLayout>
+
+
+    <com.example.proyecto_finalmov.CustomProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_margin="16dp"
+        android:progressDrawable="@drawable/progress_gradient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <!-- Botón "COMPROBAR" -->
     <com.google.android.material.button.MaterialButton

@@ -2,6 +2,7 @@ package com.example.proyecto_finalmov;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +38,7 @@ public class EcosistemaSound extends AppCompatActivity {
     private String selectedSound = null;
     private final Map<String, String> userSelections = new HashMap<>();
     private int correctMatches = 0;
+    private CustomProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,11 @@ public class EcosistemaSound extends AppCompatActivity {
         soundsContainer = findViewById(R.id.soundsContainer);
         matchesContainer = findViewById(R.id.matchesContainer);
         btnCheck = findViewById(R.id.btnCheck);
+        progressBar = findViewById(R.id.progressBar);
+
+        // Inicializa el progreso en 0
+        progressBar.setMax(TOTAL_PAIRS);
+        progressBar.updateProgress(0);
     }
 
     private void setupSoundItems() {
@@ -93,9 +100,6 @@ public class EcosistemaSound extends AppCompatActivity {
     }
 
     private void setupSoundItem(View item, String soundResource) {
-        ImageView ivSound = item.findViewById(R.id.ivSound);
-        item.setTag(soundResource);
-
         item.setOnClickListener(v -> {
             playSound(soundResource);
             selectedSound = soundResource;
@@ -103,8 +107,6 @@ public class EcosistemaSound extends AppCompatActivity {
     }
 
     private void setupMatchItem(View item, String matchText) {
-        TextView tvMatch = item.findViewById(R.id.tvMatch);
-
         item.setOnClickListener(v -> {
             if (selectedSound != null) {
                 userSelections.put(selectedSound, matchText);
@@ -117,6 +119,7 @@ public class EcosistemaSound extends AppCompatActivity {
                     }
                 }
                 updateCardColor((CardView) item, isCorrect);
+                progressBar.updateProgress(correctMatches); // Actualiza el progreso aquí
                 if (correctMatches == TOTAL_PAIRS) {
                     Toast.makeText(this, "¡Emparejaste todos los sonidos correctamente!", Toast.LENGTH_LONG).show();
                 }
@@ -138,8 +141,6 @@ public class EcosistemaSound extends AppCompatActivity {
             colorAnimation.addUpdateListener(animator ->
                     cardView.setCardBackgroundColor((int) animator.getAnimatedValue()));
             colorAnimation.start();
-        } else {
-            Toast.makeText(this, "El elemento no es un CardView.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -167,12 +168,24 @@ public class EcosistemaSound extends AppCompatActivity {
         btnCheck.setOnClickListener(v -> {
             if (correctMatches == TOTAL_PAIRS) {
                 Toast.makeText(this, "¡Felicidades! Terminaste el juego.", Toast.LENGTH_LONG).show();
-                // Aquí puedes agregar lógica para avanzar a otra actividad o finalizar el juego
+                transitionToPlantasActivity(); // Llamada al método para ir a la actividad "Plantas"
             } else {
                 Toast.makeText(this, "Revisa los pares incorrectos.", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    private void transitionToPlantasActivity() {
+        try {
+            Intent intent = new Intent(EcosistemaSound.this, plantas.class);
+            startActivity(intent);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error al iniciar la actividad plantas: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     @Override
     protected void onStop() {

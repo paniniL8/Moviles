@@ -1,6 +1,7 @@
 package com.example.proyecto_finalmov;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
@@ -14,14 +15,14 @@ public class QuizManager {
 
     private final Context context;
     private TextView tvPregunta, tvPuntos, tvTiempo, tvIntentos;
-    private Button btnOpcion1, btnOpcion2, btnOpcion3, btnOpcion4;
+    private Button btnOpcion1, btnOpcion2, btnOpcion3, btnOpcion4, btnRetroalimentacion;
     private List<PreguntasSisSolar> preguntas;
     private int preguntaActual = 0;
     private int puntos = 0;
     private int intentosRestantes = 2;
     private CountDownTimer temporizador;
 
-    private static final long TIEMPO_TOTAL = 60000; // 60 segundos
+    private static final long TIEMPO_TOTAL = 120000; // 2 minutos
 
     public QuizManager(Context context) {
         this.context = context;
@@ -40,6 +41,7 @@ public class QuizManager {
         btnOpcion2 = activity.findViewById(R.id.option2);
         btnOpcion3 = activity.findViewById(R.id.option3);
         btnOpcion4 = activity.findViewById(R.id.option4);
+        btnRetroalimentacion = activity.findViewById(R.id.retroButton);
 
         // Inicializar preguntas
         preguntas = PreguntasSisSolar.obtenerPreguntas();
@@ -54,7 +56,6 @@ public class QuizManager {
         iniciarTemporizador();
     }
 
-
     private void configurarBotones() {
         View.OnClickListener listener = v -> {
             Button botonPresionado = (Button) v;
@@ -65,6 +66,15 @@ public class QuizManager {
         btnOpcion2.setOnClickListener(listener);
         btnOpcion3.setOnClickListener(listener);
         btnOpcion4.setOnClickListener(listener);
+
+        // Configurar el botón de retroalimentación
+        btnRetroalimentacion.setOnClickListener(v -> {
+            Intent intent = new Intent(context, RetroalimentacionAct.class);
+            context.startActivity(intent);
+            ((AppCompatActivity) context).finish(); // Finalizar la actividad actual
+        });
+
+        btnRetroalimentacion.setVisibility(View.GONE); // Ocultar el botón al inicio
     }
 
     private void verificarRespuesta(Button botonSeleccionado) {
@@ -81,12 +91,12 @@ public class QuizManager {
             if (preguntaActual < preguntas.size()) {
                 mostrarPregunta();
             } else {
-                finalizarJuego("¡Felicitaciones! Has completado todas las preguntas");
+                finalizarJuego("¡Felicitaciones! Has completado todas las preguntas", true);
             }
         } else {
             intentosRestantes--;
             if (intentosRestantes <= 0) {
-                finalizarJuego("Game Over - Se acabaron los intentos");
+                finalizarJuego("Game Over - Se acabaron los intentos", false);
             } else {
                 puntos -= 5;
             }
@@ -107,7 +117,7 @@ public class QuizManager {
                 btnOpcion4.setText(opciones[3]);
             }
         } else {
-            finalizarJuego("¡Felicitaciones! Has completado todas las preguntas");
+            finalizarJuego("¡Felicitaciones! Has completado todas las preguntas", true);
         }
     }
 
@@ -128,17 +138,36 @@ public class QuizManager {
 
             @Override
             public void onFinish() {
-                finalizarJuego("¡Se acabó el tiempo!");
+                finalizarJuego("¡Se acabó el tiempo!", false);
             }
         }.start();
     }
 
-    private void finalizarJuego(String mensaje) {
+    private void finalizarJuego(String mensaje, boolean jugadorCompletoJuego) {
+        // Mostrar el mensaje de finalización
         tvPregunta.setText(mensaje + "\nPuntos finales: " + puntos);
-        btnOpcion1.setEnabled(false);
-        btnOpcion2.setEnabled(false);
-        btnOpcion3.setEnabled(false);
-        btnOpcion4.setEnabled(false);
+
+        // Ocultar las opciones de preguntas
+        btnOpcion1.setVisibility(View.GONE);
+        btnOpcion2.setVisibility(View.GONE);
+        btnOpcion3.setVisibility(View.GONE);
+        btnOpcion4.setVisibility(View.GONE);
+
+        // Mostrar el botón para ir a retroalimentación
+        btnRetroalimentacion.setVisibility(View.VISIBLE);
+        btnRetroalimentacion.setOnClickListener(v -> {
+            Intent intent = new Intent(context, RetroalimentacionAct.class);
+            if (jugadorCompletoJuego) {
+                // Mensaje para el jugador que completó todas las preguntas
+                intent.putExtra("mensaje", "¡Felicidades! Terminaste el juego con éxito.");
+            } else {
+                // Mensaje para el jugador que perdió todas las vidas
+                intent.putExtra("mensaje", "Sigue intentándolo, no te rindas.");
+            }
+            context.startActivity(intent);
+        });
+
+        // Detener el temporizador si aún está activo
         if (temporizador != null) {
             temporizador.cancel();
         }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardBackgroundColor="@color/card_dark"
+    app:cardBackgroundColor="#006400"
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp">
 
@@ -21,7 +21,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_waveform"
-            android:tint="@color/primary_blue"
+            android:tint="@color/white"
             android:visibility="gone" />
 
         <!-- Texto para palabras -->

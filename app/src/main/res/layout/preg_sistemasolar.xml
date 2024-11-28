@@ -204,4 +204,19 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- Botón de Retroalimentación -->
+    <Button
+        android:id="@+id/retroButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:text="Ir a Retroalimentación"
+        android:visibility="gone"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
 </LinearLayout>

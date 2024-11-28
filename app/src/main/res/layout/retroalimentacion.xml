@@ -3,64 +3,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Fondo de la pantalla -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/pantallareg"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY" />
 
+    <!-- Mensaje dinámico centrado -->
     <TextView
+        android:id="@+id/tvMensajeRetroalimentacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="155dp"
-        android:lineSpacingExtra="4dp"
-        android:padding="10dp"
-        android:text="¡FANTÁSTICO! 🌟\n\n¡Eres un verdadero científico explorador!\n\nHas demostrado que conoces muy bien la naturaleza.\n\n¡Sigue así, pequeño genio!"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="¡Felicidades!"
+        android:textSize="25sp"
+        android:padding="20dp"
+        android:textColor="@color/white"
         android:textAlignment="center"
-        android:textSize="20sp"
         android:textStyle="bold" />
 
+
+    <!-- Contenedor de botones -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp">
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="50dp">
 
+        <!-- Botón para volver al menú principal -->
         <ImageButton
             android:id="@+id/homeButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_gravity="center"
             android:layout_margin="20dp"
             android:background="@drawable/fondoredondo"
             android:padding="8dp"
             android:scaleType="centerInside"
-            android:src="@drawable/baseline_home_24" />
+            android:src="@drawable/baseline_home_24"
+            android:contentDescription="Volver al inicio" />
 
+        <!-- Botón para volver al inicio de la actividad -->
         <ImageButton
             android:id="@+id/flecha"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_gravity="center"
             android:layout_margin="20dp"
             android:background="@drawable/fondoredondo"
             android:padding="8dp"
             android:scaleType="centerInside"
-            android:src="@drawable/baseline_arrow_back_24" />
+            android:src="@drawable/baseline_arrow_back_24"
+            android:contentDescription="Retroceder" />
 
+        <!-- Botón para niveles -->
         <ImageButton
             android:id="@+id/nivel"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_gravity="center"
             android:layout_margin="20dp"
             android:background="@drawable/fondoredondo"
             android:padding="8dp"
             android:scaleType="centerInside"
-            android:src="@drawable/baseline_emoji_events_24" />
+            android:src="@drawable/baseline_emoji_events_24"
+            android:contentDescription="Ir al nivel" />
 
     </LinearLayout>
 
