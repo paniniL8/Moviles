@@ -159,10 +159,10 @@ public class QuizManager {
             Intent intent = new Intent(context, RetroalimentacionAct.class);
             if (jugadorCompletoJuego) {
                 // Mensaje para el jugador que completó todas las preguntas
-                intent.putExtra("mensaje", "¡Felicidades! Terminaste el juego con éxito.");
+                intent.putExtra("mensaje", "¡Felicidades!¡Eres un campeón! La ciencia necesita más mentes brillantes como la tuya. 🌟 ");
             } else {
                 // Mensaje para el jugador que perdió todas las vidas
-                intent.putExtra("mensaje", "Sigue intentándolo, no te rindas.");
+                intent.putExtra("mensaje", "¡Oh no! Esta vez no fue, pero aprender de los errores es parte de la ciencia. ☀️🍀");
             }
             context.startActivity(intent);
         });

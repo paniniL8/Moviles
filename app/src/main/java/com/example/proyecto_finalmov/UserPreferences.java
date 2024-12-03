@@ -19,25 +19,21 @@ public class UserPreferences extends AppCompatActivity {
 
         dbHelper = new DBSQLite(this);
 
-        // Referencias a los TextView
+        // Referencias a los TextViews
         TextView usernameTextView = findViewById(R.id.username);
         TextView ageTextView = findViewById(R.id.ageTextView);
+        TextView levelTextView = findViewById(R.id.levelTextView);
 
-        // Obtener los datos del Intent
+        // Obtener datos del Intent
         String nombre = getIntent().getStringExtra("nombre");
         int edad = getIntent().getIntExtra("edad", -1);
 
-        Log.d("UserPreferences", "Datos recibidos del Intent: nombre=" + nombre + ", edad=" + edad); // DEPURACIÓN
-
         if (nombre != null && edad != -1) {
-            // Mostrar datos del Intent (usuario recién registrado o iniciado sesión)
-            usernameTextView.setText("Nombre: " + nombre);
-            ageTextView.setText("Edad: " + edad);
-
-            Log.d("UserPreferences", "Datos mostrados desde el Intent: Nombre=" + nombre + ", Edad=" + edad);
+            // Mostrar datos del Intent
+            mostrarDatosUsuario(usernameTextView, ageTextView, levelTextView, nombre, edad);
         } else {
-            // Si no hay datos en el Intent, cargar desde la tabla sesion_actual
-            mostrarUsuarioActual(usernameTextView, ageTextView);
+            // Mostrar datos del usuario actual desde la sesión
+            mostrarUsuarioActual(usernameTextView, ageTextView, levelTextView);
         }
 
         // Botón para regresar al menú principal
@@ -50,15 +46,22 @@ public class UserPreferences extends AppCompatActivity {
         });
     }
 
-    private void mostrarUsuarioActual(TextView usernameTextView, TextView ageTextView) {
-        String[] usuarioActual = dbHelper.obtenerUsuarioActual();
+    private void mostrarDatosUsuario(TextView usernameTextView, TextView ageTextView, TextView levelTextView, String nombre, int edad) {
+        usernameTextView.setText("Nombre: " + nombre);
+        ageTextView.setText("Edad: " + edad);
 
-        // DEPURACIÓN
-        if (usuarioActual != null) {
-            Log.d("UserPreferences", "Usuario actual cargado: " + usuarioActual[0] + ", " + usuarioActual[1]);
-        } else {
-            Log.d("UserPreferences", "No se encontró un usuario actual en la tabla sesion_actual.");
+        try {
+            // Obtener nivel del usuario desde la base de datos
+            int nivel = dbHelper.obtenerNivelActual(nombre);
+            levelTextView.setText("Nivel: " + nivel);
+        } catch (Exception e) {
+            Log.e("UserPreferences", "Error al obtener el nivel del usuario", e);
+            levelTextView.setText("Nivel: No disponible");
         }
+    }
+
+    private void mostrarUsuarioActual(TextView usernameTextView, TextView ageTextView, TextView levelTextView) {
+        String[] usuarioActual = dbHelper.obtenerUsuarioActual();
 
         if (usuarioActual != null) {
             String nombre = usuarioActual[0];
@@ -66,12 +69,19 @@ public class UserPreferences extends AppCompatActivity {
 
             usernameTextView.setText("Nombre: " + nombre);
             ageTextView.setText("Edad: " + edad);
+
+            try {
+                // Obtener nivel del usuario actual
+                int nivel = dbHelper.obtenerNivelActual(nombre);
+                levelTextView.setText("Nivel: " + nivel);
+            } catch (Exception e) {
+                Log.e("UserPreferences", "Error al obtener nivel del usuario actual", e);
+                levelTextView.setText("Nivel: No disponible");
+            }
         } else {
             usernameTextView.setText("Nombre: No disponible");
             ageTextView.setText("Edad: No disponible");
+            levelTextView.setText("Nivel: No disponible");
         }
     }
-
-
-
 }

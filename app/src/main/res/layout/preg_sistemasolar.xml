@@ -168,7 +168,7 @@
                 android:textSize="18sp"
                 android:backgroundTint="#B0C4DE"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#FFFFFF" />
+                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/option2"
@@ -179,7 +179,7 @@
                 android:textSize="18sp"
                 android:backgroundTint="#B0C4DE"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#FFFFFF" />
+                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/option3"
@@ -190,7 +190,7 @@
                 android:textSize="18sp"
                 android:backgroundTint="#B0C4DE"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#FFFFFF" />
+                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/option4"
@@ -200,7 +200,7 @@
                 android:textSize="18sp"
                 android:backgroundTint="#B0C4DE"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#FFFFFF" />
+                android:textColor="#000000" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

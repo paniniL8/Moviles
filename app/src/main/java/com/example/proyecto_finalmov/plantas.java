@@ -131,7 +131,7 @@ public class plantas extends AppCompatActivity {
         if (isComplete) {
             // Enviar a la actividad de retroalimentación con mensaje de felicitación
             Intent intent = new Intent(plantas.this, RetroalimentacionAct.class);
-            intent.putExtra("mensaje", "¡Felicitaciones! Has terminado la actividad con exito.");
+            intent.putExtra("mensaje", "¡Felicidades!¡Eres un campeón! La ciencia necesita más mentes brillantes como la tuya. 🌟");
             startActivity(intent);
             finish(); // Finaliza la actividad actual para evitar regresar
         }

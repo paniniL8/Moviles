@@ -35,6 +35,13 @@ public class RetroalimentacionAct extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-    }
 
+        // Configurar el botón de nivel
+        ImageButton nivelButton = findViewById(R.id.nivel);
+        nivelButton.setOnClickListener(v -> {
+            Intent intent = new Intent(RetroalimentacionAct.this, SubirNivel.class);
+            startActivity(intent);
+            finish();
+        });
+    }
 }

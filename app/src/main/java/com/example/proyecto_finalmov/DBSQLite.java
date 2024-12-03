@@ -7,132 +7,147 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.util.Vector;
-
 public class DBSQLite extends SQLiteOpenHelper {
+    // Constantes
     public static final String DATABASE_NAME = "UserDatabase";
     public static final String TABLE_USUARIOS = "usuarios";
     public static final String TABLE_SESION = "sesion_actual";
-    public static final int DATABASE_VERSION = 2; // Cambia a la siguiente versión
+    public static final int DATABASE_VERSION = 3; // Cambia a la siguiente versión si es necesario
 
-
+    // Constructor
     public DBSQLite(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Crear tabla de usuarios
+        // Crear las tablas
         String createTableUsuarios = "CREATE TABLE usuarios (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre TEXT NOT NULL, " +
-                "edad INTEGER NOT NULL)";
+                "edad INTEGER NOT NULL, " +
+                "nivel INTEGER DEFAULT 0)"; // Agregado el campo 'nivel'
 
-        // Crear tabla para la sesión actual
         String createTableSesion = "CREATE TABLE sesion_actual (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "usuario_id INTEGER NOT NULL, " +
                 "nombre TEXT NOT NULL, " +
-                "edad INTEGER NOT NULL)";
+                "edad INTEGER NOT NULL, " +
+                "nivel INTEGER DEFAULT 0, " + // Se añadió 'nivel' a la sesión actual
+                "FOREIGN KEY (usuario_id) REFERENCES usuarios(id))"; // Aseguramos la relación con 'usuarios'
 
         db.execSQL(createTableUsuarios);
         db.execSQL(createTableSesion);
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS usuarios");
-        db.execSQL("DROP TABLE IF EXISTS sesion_actual");
-        onCreate(db);
+        if (oldVersion < newVersion) {
+            // Actualización de la base de datos
+            db.execSQL("DROP TABLE IF EXISTS sesion_actual");
+            db.execSQL("DROP TABLE IF EXISTS usuarios");
+            onCreate(db); // Si hay un cambio en la versión de la base de datos
+        }
     }
 
-
-    // Guardar usuario en la base de datos
-    public long guardarUsuario(String nombre, int edad) {
+    // Guardar usuario con nivel
+    public long guardarUsuario(String nombre, int edad, int nivel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("nombre", nombre);
         values.put("edad", edad);
+        values.put("nivel", nivel); // Almacenar el nivel
 
         long userId = db.insert(TABLE_USUARIOS, null, values);
-        Log.d("DBSQLite", "Usuario guardado con ID: " + userId); // DEPURACIÓN
+        Log.d("DBSQLite", "Usuario guardado con ID: " + userId);
         return userId;
     }
 
-
-
-    // Establecer usuario actual (sesión)
-    public void establecerUsuarioActual(long userId, String nombre, int edad) {
+    // Establecer usuario actual con nivel
+    public void establecerUsuarioActual(long userId, String nombre, int edad, int nivel) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_SESION, null, null); // Limpia la tabla
+        db.delete(TABLE_SESION, null, null); // Limpia la tabla sesión
 
         ContentValues values = new ContentValues();
         values.put("usuario_id", userId);
         values.put("nombre", nombre);
         values.put("edad", edad);
+        values.put("nivel", nivel); // Guardar nivel
 
         long result = db.insert(TABLE_SESION, null, values);
         if (result != -1) {
-            Log.d("DBSQLite", "Usuario actual registrado: ID=" + userId + ", Nombre=" + nombre + ", Edad=" + edad); // DEPURACIÓN
+            Log.d("DBSQLite", "Usuario actual registrado: " + nombre + ", Nivel=" + nivel);
         } else {
-            Log.e("DBSQLite", "Error al registrar el usuario actual en la tabla sesion_actual");
+            Log.e("DBSQLite", "Error al registrar usuario actual");
         }
     }
 
-
-
+    // Obtener usuario actual con nivel
     public String[] obtenerUsuarioActual() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT nombre, edad FROM " + TABLE_SESION + " LIMIT 1";
+        String query = "SELECT nombre, edad, nivel FROM " + TABLE_SESION + " LIMIT 1";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
             String nombre = cursor.getString(0);
             int edad = cursor.getInt(1);
+            int nivel = cursor.getInt(2);
             cursor.close();
-            Log.d("DBSQLite", "Usuario actual encontrado: Nombre=" + nombre + ", Edad=" + edad); // DEPURACIÓN
-            return new String[]{nombre, String.valueOf(edad)};
+            Log.d("DBSQLite", "Usuario actual encontrado: " + nombre + ", Edad=" + edad + ", Nivel=" + nivel);
+            return new String[]{nombre, String.valueOf(edad), String.valueOf(nivel)};
         } else {
             cursor.close();
-            Log.d("DBSQLite", "No se encontró un usuario actual en la tabla sesion_actual."); // DEPURACIÓN
+            Log.d("DBSQLite", "No se encontró usuario actual");
             return null;
         }
     }
 
-    // Cerrar sesión
-    public void cerrarSesion() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_SESION, null, null);
-    }
+    // Obtener nivel de usuario
+    public int obtenerNivelActual(String nombre) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int nivel = 0; // Nivel por defecto
 
-    public Vector listarUsuarios() {
-        Vector usuarios = new Vector<>();
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT id, nombre, edad FROM " + TABLE_USUARIOS + " ORDER BY id", null);
-        while (cursor.moveToNext()) {
-            usuarios.add("ID: " + cursor.getInt(0) + ", Nombre: " + cursor.getString(1) + ", Edad: " + cursor.getInt(2));
+        try (Cursor cursor = db.rawQuery(
+                "SELECT nivel FROM " + TABLE_USUARIOS + " WHERE nombre = ?",
+                new String[]{nombre})) {
+            if (cursor.moveToFirst()) {
+                nivel = cursor.getInt(cursor.getColumnIndexOrThrow("nivel"));
+            }
+        } catch (Exception e) {
+            Log.e("DBSQLite", "Error al obtener nivel", e);
         }
-        cursor.close();
-        return usuarios;
+
+        return nivel;
     }
 
-    public void eliminarUsuarios() {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_USUARIOS);
-        db.execSQL("DELETE FROM " + TABLE_SESION);
+    // Método para listar las tablas en la base de datos
+    public void listarTablas() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        // Consulta para obtener las tablas de la base de datos
+        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
+
+        // Imprimir las tablas en el Logcat
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String tableName = cursor.getString(0);
+                Log.d("DBTables", "Tabla: " + tableName);
+            }
+            cursor.close();
+        }
         db.close();
     }
 
-    public boolean existeUsuario(String nombre) {
+    // Método para verificar si un usuario ya existe en la base de datos
+    public boolean existeUsuario(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT 1 FROM " + TABLE_USUARIOS + " WHERE nombre = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{nombre});
+        // Consulta para verificar si el usuario existe
+        Cursor cursor = db.rawQuery("SELECT 1 FROM usuarios WHERE nombre = ?", new String[]{username});
+
+        // Verificamos si se obtuvo un resultado
         boolean existe = cursor.moveToFirst();
         cursor.close();
+        db.close();
+
         return existe;
     }
-
-
-
 }

@@ -49,11 +49,11 @@ public class RegistroActivity extends AppCompatActivity {
             }
 
             // Guardar en la base de datos
-            long userId = dbHelper.guardarUsuario(username, age);
+            long userId = dbHelper.guardarUsuario(username, age, 1);
 
             if (userId != -1) {
                 // Registrar al usuario actual en la tabla sesion_actual
-                dbHelper.establecerUsuarioActual(userId, username, age);
+                dbHelper.establecerUsuarioActual(userId, username, age, 1);
 
                 // Mostrar mensaje de éxito
                 Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_LONG).show();
