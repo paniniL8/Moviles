@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Random;
+
 public class SubirNivel extends AppCompatActivity {
 
     private DBSQLite dbHelper;
@@ -129,6 +131,44 @@ public class SubirNivel extends AppCompatActivity {
                             "Producir más basura",
                             "Reutilizar materiales"
                     }
+            },
+            // Nivel 4 preguntas
+            {
+                    {
+                            "¿Qué es la condensación en el ciclo del agua?",
+                            "Cuando el vapor de agua se convierte en gotas de agua",
+                            "Cuando llueve",
+                            "Cuando el agua se evapora",
+                            "Cuando el vapor de agua se convierte en gotas de agua"
+                    },
+                    {
+                            "¿Cuál es la estrella más cercana a la Tierra?",
+                            "El Sol",
+                            "La Luna",
+                            "Júpiter",
+                            "El Sol"
+                    },
+                    {
+                            "¿Qué es un productor en un ecosistema?",
+                            "Un ser vivo que produce su propio alimento, como las plantas",
+                            "Un animal que caza a otros",
+                            "Un insecto que poliniza",
+                            "Un ser vivo que produce su propio alimento, como las plantas"
+                    },
+                    {
+                            "¿Qué función tienen los pulmones?",
+                            "Ayudar a respirar y obtener oxígeno",
+                            "Bombear sangre",
+                            "Digerir alimentos",
+                            "Ayudar a respirar y obtener oxígeno"
+                    },
+                    {
+                            "¿Qué es la precipitación en el ciclo del agua?",
+                            "Cuando el agua cae del cielo como lluvia o nieve",
+                            "Cuando el agua se evapora",
+                            "Cuando las nubes se forman",
+                            "Cuando el agua cae del cielo como lluvia o nieve"
+                    }
             }
     };
 
@@ -158,13 +198,14 @@ public class SubirNivel extends AppCompatActivity {
         correctAnswers = 0;
 
         // Comprobar respuestas
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < preguntasNivel[currentLevel - 1].length; i++) { // Change this line
             correctAnswers += checkSingleAnswer(
                     getResources().getIdentifier("question" + (i + 1) + "Group", "id", getPackageName()),
                     preguntasNivel[currentLevel - 1][i][4]
             );
         }
 
+        Log.d("SubirNivel", "Correct Answers: " + correctAnswers); // Add logging
         return correctAnswers >= 4; // Al menos 4 respuestas correctas para pasar
     }
 
@@ -175,10 +216,32 @@ public class SubirNivel extends AppCompatActivity {
             TextView preguntaTextView = findViewById(getResources().getIdentifier("question" + (i + 1), "id", getPackageName()));
             RadioGroup radioGroup = findViewById(getResources().getIdentifier("question" + (i + 1) + "Group", "id", getPackageName()));
 
+            String[] answers = {preguntas[i][1], preguntas[i][2], preguntas[i][3]};
+            String correctAnswer = preguntas[i][4];
+
+            shuffleArray(answers);
+
             preguntaTextView.setText(preguntas[i][0]);
-            ((RadioButton) radioGroup.getChildAt(0)).setText(preguntas[i][1]);
-            ((RadioButton) radioGroup.getChildAt(1)).setText(preguntas[i][2]);
-            ((RadioButton) radioGroup.getChildAt(2)).setText(preguntas[i][3]);
+
+            for (int j = 0; j < 3; j++) {
+                RadioButton radioButton = (RadioButton) radioGroup.getChildAt(j);
+                radioButton.setText(answers[j]);
+
+                if (answers[j].equals(correctAnswer)) {
+                    preguntasNivel[nivel - 1][i][4] = answers[j];
+                }
+            }
+        }
+    }
+
+    private void shuffleArray(String[] array) {
+        Random rand = new Random();
+        for (int i = array.length - 1; i > 0; i--) {
+            int j = rand.nextInt(i + 1);
+            // Swap array[i] with array[j]
+            String temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
         }
     }
 
@@ -211,12 +274,29 @@ public class SubirNivel extends AppCompatActivity {
             currentLevel = obtenerNivelActual(nombreUsuario);
 
             if (currentLevel < preguntasNivel.length) {
+                // Si aún no ha llegado al último nivel, sube de nivel normalmente
                 asignarNivel(currentLevel + 1);
                 mostrarMensajeDeFelicidades(nombreUsuario, currentLevel + 1);
             } else {
-                Toast.makeText(this, "¡Has alcanzado el nivel máximo!", Toast.LENGTH_SHORT).show();
+                // Ha llegado al último nivel, muestra un mensaje especial de logro máximo
+                mostrarMensajeUltimoNivel(nombreUsuario);
             }
         }
+    }
+
+    private void mostrarMensajeUltimoNivel(String nombreUsuario) {
+        new AlertDialog.Builder(this)
+                .setTitle("¡Felicidades Campeón!")
+                .setMessage("¡Has completado todos los niveles, " + nombreUsuario + "! \n\n" +
+                        "Has demostrado ser un verdadero científico explorador. " +
+                        "¡Estás preparado para seguir aprendiendo y descubriendo el mundo!")
+                .setPositiveButton("¡Genial!", (dialog, which) -> {
+                    Intent intent = new Intent(SubirNivel.this, MenuPrincipalAct.class);
+                    startActivity(intent);
+                    finish();
+                })
+                .setCancelable(false) // Evita que el usuario cierre el diálogo sin presionar el botón
+                .show();
     }
 
     private void asignarNivel(int nuevoNivel) {

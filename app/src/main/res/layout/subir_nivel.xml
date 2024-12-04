@@ -1,201 +1,326 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="#F0F4F8">
 
-    <!-- LinearLayout para las preguntas -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="16dp"
         android:scrollbars="vertical">
 
-        <!-- Título de la actividad -->
+        <!-- Activity Title -->
         <TextView
             android:id="@+id/questionTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#4CAF50"
+            android:gravity="center"
+            android:padding="16dp"
             android:text="¡Responde las siguientes preguntas para subir de nivel!"
-            android:textSize="18sp"
-            android:layout_gravity="center"
-            android:paddingBottom="16dp"/>
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
-        <!-- Nivel actual -->
-        <TextView
-            android:id="@+id/currentLevel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nivel actual: 1"
-            android:textSize="16sp"
-            android:layout_gravity="center"
-            android:paddingBottom="16dp"/>
 
-        <!-- Pregunta 1 -->
-        <TextView
-            android:id="@+id/question1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¿De qué forma sube el agua al cielo durante el ciclo del agua?"
-            android:textSize="16sp"
-            android:paddingBottom="8dp"/>
-
-        <RadioGroup
-            android:id="@+id/question1Group"
+        <!-- Question Template -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/answer1a"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Por evaporación"
-                android:paddingEnd="8dp"/>
-            <RadioButton
-                android:id="@+id/answer1b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Como vapor" />
-            <RadioButton
-                android:id="@+id/answer1c"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Por absorción" />
-        </RadioGroup>
-
-        <!-- Pregunta 2 -->
-        <TextView
-            android:id="@+id/question2"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿Qué pasa con el agua cuando se condensa en las nubes?"
-            android:textSize="16sp"
-            android:paddingBottom="8dp"/>
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
 
-        <RadioGroup
-            android:id="@+id/question2Group"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Question 1 -->
+                <TextView
+                    android:id="@+id/question1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿De qué forma sube el agua al cielo durante el ciclo del agua?"
+                    android:textColor="#333333"
+                    android:background="#9ff6b0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="8dp"/>
+
+                <RadioGroup
+                    android:id="@+id/question1Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/answer1a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Por evaporación"/>
+                    <RadioButton
+                        android:id="@+id/answer1b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Como vapor"/>
+                    <RadioButton
+                        android:id="@+id/answer1c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Por absorción"/>
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Repeat the CardView structure for Questions 2-5 -->
+        <!-- Question 2 -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/answer2a"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Se convierte en vapor"
-                android:paddingEnd="8dp"/>
-            <RadioButton
-                android:id="@+id/answer2b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Se convierte en nieve" />
-            <RadioButton
-                android:id="@+id/answer2c"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Se convierte en lluvia" />
-        </RadioGroup>
-
-        <!-- Pregunta 3 -->
-        <TextView
-            android:id="@+id/question3"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿Qué planeta está más cerca del Sol?"
-            android:textSize="16sp"
-            android:paddingBottom="8dp"/>
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
 
-        <RadioGroup
-            android:id="@+id/question3Group"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/question2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿Qué pasa con el agua cuando se condensa en las nubes?"
+                    android:textColor="#333333"
+                    android:background="#9ff6b0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="8dp"/>
+
+                <RadioGroup
+                    android:id="@+id/question2Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/answer2a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Se convierte en vapor"/>
+                    <RadioButton
+                        android:id="@+id/answer2b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Se convierte en nieve"/>
+                    <RadioButton
+                        android:id="@+id/answer2c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Se convierte en lluvia"/>
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Question 3 -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/answer3a"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Venus"/>
-            <RadioButton
-                android:id="@+id/answer3b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Marte"/>
-            <RadioButton
-                android:id="@+id/answer3c"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tierra"/>
-            <RadioButton
-                android:id="@+id/answer3d"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mercurio" />
-        </RadioGroup>
-
-        <!-- Pregunta 4 -->
-        <TextView
-            android:id="@+id/question4"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿Cuántos planetas hay en el sistema solar?"
-            android:textSize="16sp"
-            android:paddingBottom="8dp"/>
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
 
-        <RadioGroup
-            android:id="@+id/question4Group"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/question3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿Qué planeta está más cerca del Sol?"
+                    android:textColor="#333333"
+                    android:background="#9ff6b0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="8dp"/>
+
+                <RadioGroup
+                    android:id="@+id/question3Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/answer3a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Venus"/>
+                    <RadioButton
+                        android:id="@+id/answer3b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Marte"/>
+                    <RadioButton
+                        android:id="@+id/answer3c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Tierra"/>
+                    <RadioButton
+                        android:id="@+id/answer3d"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Mercurio"/>
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Question 4 -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/answer4a"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10"/>
-            <RadioButton
-                android:id="@+id/answer4b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="9"/>
-            <RadioButton
-                android:id="@+id/answer4c"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="8"/>
-        </RadioGroup>
-
-        <!-- Pregunta 5 -->
-        <TextView
-            android:id="@+id/question5"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿Qué es un ecosistema?"
-            android:textSize="16sp"
-            android:paddingBottom="8dp"/>
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
 
-        <RadioGroup
-            android:id="@+id/question5Group"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/question4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿Cuántos planetas hay en el sistema solar?"
+                    android:textColor="#333333"
+                    android:background="#9ff6b0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="8dp"/>
+
+                <RadioGroup
+                    android:id="@+id/question4Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/answer4a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="10"/>
+                    <RadioButton
+                        android:id="@+id/answer4b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="9"/>
+                    <RadioButton
+                        android:id="@+id/answer4c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="8"/>
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Question 5 -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/answer5a"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Un lugar donde viven los animales y las plantas"/>
-            <RadioButton
-                android:id="@+id/answer5b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Un lugar donde solo hay agua"/>
-            <RadioButton
-                android:id="@+id/answer5c"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Un lugar solo con plantas" />
-        </RadioGroup>
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
 
-        <!-- Botón para enviar respuestas -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/question5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¿Qué es un ecosistema?"
+                    android:textColor="#333333"
+                    android:background="#9ff6b0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="8dp"/>
+
+                <RadioGroup
+                    android:id="@+id/question5Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/answer5a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Un lugar donde viven los animales y las plantas"/>
+                    <RadioButton
+                        android:id="@+id/answer5b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Un lugar donde solo hay agua"/>
+                    <RadioButton
+                        android:id="@+id/answer5c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="8dp"
+                        android:text="Un lugar solo con plantas"/>
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Submit Button -->
         <Button
             android:id="@+id/submitButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#4CAF50"
+            android:padding="16dp"
             android:text="Enviar respuestas"
-            android:layout_gravity="center"
-            android:paddingTop="16dp"/>
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 </ScrollView>

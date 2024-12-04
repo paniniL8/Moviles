@@ -52,19 +52,17 @@ public class RegistroActivity extends AppCompatActivity {
             long userId = dbHelper.guardarUsuario(username, age, 1);
 
             if (userId != -1) {
-                // Registrar al usuario actual en la tabla sesion_actual
                 dbHelper.establecerUsuarioActual(userId, username, age, 1);
-
-                // Mostrar mensaje de éxito
                 Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_LONG).show();
 
-                // Redirigir a la página de inicio (InicioActivity)
-                Intent intent = new Intent(RegistroActivity.this, InicioActivity.class);
+                // Redirigir a la actividad de progreso
+                Intent intent = new Intent(RegistroActivity.this, ProgressActivity.class);
                 startActivity(intent);
-                finish(); // Finalizar la actividad actual
+                finish(); // Finalizar RegistroActivity
             } else {
                 Toast.makeText(this, "Error al registrar el usuario. Intente nuevamente.", Toast.LENGTH_SHORT).show();
             }
+
         });
 
     }
