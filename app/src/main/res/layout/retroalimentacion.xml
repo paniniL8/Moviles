@@ -45,18 +45,6 @@
             android:src="@drawable/baseline_home_24"
             android:contentDescription="Volver al inicio" />
 
-        <!-- Botón para volver al inicio de la actividad -->
-        <ImageButton
-            android:id="@+id/flecha"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="20dp"
-            android:background="@drawable/fondoredondo"
-            android:padding="8dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/baseline_arrow_back_24"
-            android:contentDescription="Retroceder" />
-
         <!-- Botón para niveles -->
         <ImageButton
             android:id="@+id/nivel"

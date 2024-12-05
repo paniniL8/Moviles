@@ -25,9 +25,10 @@
         android:layout_height="wrap_content"
         android:text="Arrastra cada planta hacia su ecosistema correspondiente. Si la planta pertenece a ese ecosistema, ¡se quedará en su lugar! Si no es correcto, la planta volverá a su posición inicial.\n¡Demuestra tus conocimientos sobre los ecosistemas!"
         android:textSize="13sp"
-        android:textColor="@color/tit_dark"
+        android:textColor="#006400"
         android:textStyle="bold"
         android:layout_below="@id/title"
+        android:gravity="center"
         android:layout_marginBottom="16dp" />
 
     <!-- Plant Cards Grid -->
@@ -36,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/instructions"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="11dp"
         android:columnCount="3"
         android:rowCount="2"
         android:alignmentMode="alignMargins"
@@ -187,7 +188,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/drop_area"
         android:layout_marginBottom="16dp"
-        android:padding="12dp"
+        android:padding="10dp"
         android:background="@android:color/holo_red_light"
         android:text="¡Inténtalo de nuevo! Este tipo de planta no corresponde a este ecosistema."
         android:visibility="gone"

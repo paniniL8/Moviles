@@ -33,13 +33,12 @@
         <activity android:name=".plantas" />
         <activity android:name=".RetroalimentacionAct" />
         <activity android:name=".SistemaSolarAct" />
-        <activity android:name=".CuerpoHumanoAct" />
+        <activity android:name=".Memorama2" />
+        <activity android:name=".JuegoCuerpoHumanno"/>
         <activity android:name=".ProgressActivity" />
         <activity android:name=".SubirNivel"></activity>
 
-
-
-
     </application>
+    <uses-permission android:name="android.permission.SENSOR_ACCELEROMETER" />
 
 </manifest>

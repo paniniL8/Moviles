@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PreguntasSisSolar {
-    private String pregunta; // Texto de la pregunta
-    private String[] opciones; // Opciones de respuesta
-    private int respuestaCorrecta; // Índice de la respuesta correcta
+    private String pregunta; 
+    private String[] opciones; 
+    private int respuestaCorrecta; 
 
     // Constructor
     public PreguntasSisSolar(String pregunta, String[] opciones, int respuestaCorrecta) {

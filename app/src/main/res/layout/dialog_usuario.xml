@@ -73,14 +73,7 @@
                     android:padding="8dp"
                     android:src="@drawable/baseline_home_24" />
 
-                <ImageButton
-                    android:id="@+id/music"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_margin="20dp"
-                    android:background="@drawable/fondoredondo"
-                    android:padding="8dp"
-                    android:src="@drawable/baseline_music_off_24" />
+
             </LinearLayout>
             <ImageView
                 android:layout_width="120dp"

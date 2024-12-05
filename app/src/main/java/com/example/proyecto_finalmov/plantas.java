@@ -33,7 +33,7 @@ public class plantas extends AppCompatActivity {
         setContentView(R.layout.activity_plantas);
 
         errorMessage = findViewById(R.id.error_message);
-        cardsContainer = findViewById(R.id.cards_container); // Cambiado a GridLayout
+        cardsContainer = findViewById(R.id.cards_container); 
 
         // Inicializar las tarjetas
         TextView[] cards = {
@@ -89,7 +89,7 @@ public class plantas extends AppCompatActivity {
 
                     // Verificar si es la combinación correcta
                     if (draggedCardId.equals(correctMatches[index])) {
-                        // Copiar la imagen de la tarjeta al slot
+                        
                         slot.setBackground(draggedCard.getBackground());
 
                         // Registrar la coincidencia

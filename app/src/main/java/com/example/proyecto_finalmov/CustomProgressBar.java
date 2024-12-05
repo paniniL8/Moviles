@@ -25,14 +25,13 @@ public class CustomProgressBar extends ProgressBar {
     }
 
     private void init() {
-        // Personaliza la barra de progreso aquÃ­ si es necesario
-        setMax(100); // Ejemplo: Establece un mÃ¡ximo de 100 por defecto
+        setMax(100);
     }
 
     @Override
     protected synchronized void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        // Puedes dibujar algo personalizado aquÃ­ si lo necesitas
+
     }
 
     public void updateProgress(int progress) {

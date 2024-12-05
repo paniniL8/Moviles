@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.pag_inicio);
 
         dbHelper = new DBSQLite(this);
-
-        // Llamar al método para listar tablas y mostrar en Logcat
         dbHelper.listarTablas();
 
         // Botón para registrar un nuevo usuario
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Iniciar Sesión");
 
-        // Agregar un campo de texto para el nombre del usuario
+
         final EditText input = new EditText(this);
         input.setHint("Ingrese su nombre de usuario");
         builder.setView(input);

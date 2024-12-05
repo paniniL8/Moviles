@@ -23,10 +23,8 @@ public class MenuPrincipalAct extends AppCompatActivity {
         ImageButton cuerpohumButton = findViewById(R.id.cuerpoHum);
 
         homeButton.setOnClickListener(v -> {
-            // En lugar de crear una nueva instancia, simplemente refrescar la actividad actual
             recreate();
-            // O alternativamente, si quieres mantener el estado actual, no hacer nada:
-            // // No hacer nada ya que estamos en el menú principal
+
         });
 
         usuarioButton.setOnClickListener(v -> {
@@ -56,7 +54,7 @@ public class MenuPrincipalAct extends AppCompatActivity {
         });
 
         cuerpohumButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MenuPrincipalAct.this, CuerpoHumanoAct.class);
+            Intent intent = new Intent(MenuPrincipalAct.this, JuegoCuerpoHumanno.class);
             startActivity(intent);
         });
 

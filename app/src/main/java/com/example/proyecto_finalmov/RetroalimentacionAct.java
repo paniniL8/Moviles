@@ -20,13 +20,6 @@ public class RetroalimentacionAct extends AppCompatActivity {
         TextView tvMensaje = findViewById(R.id.tvMensajeRetroalimentacion);
         tvMensaje.setText(mensaje);
 
-        // Configurar el botón de retroceso
-        ImageButton flechaButton = findViewById(R.id.flecha);
-        flechaButton.setOnClickListener(v -> {
-            Intent intent = new Intent(RetroalimentacionAct.this, SistemaSolarAct.class);
-            startActivity(intent);
-            finish();
-        });
 
         // Configurar el botón de inicio
         ImageButton homeButton = findViewById(R.id.homeButton);

@@ -3,6 +3,7 @@ package com.example.proyecto_finalmov;
 import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
@@ -31,7 +32,7 @@ public class EcosistemaAct extends AppCompatActivity {
     private final String[] userMatches = new String[6];
 
     private TextView errorMessage;
-    private GridLayout cardsContainer; // Cambiar de LinearLayout a GridLayout
+    private GridLayout cardsContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +123,12 @@ public class EcosistemaAct extends AppCompatActivity {
                     } else {
                         errorMessage.setVisibility(View.VISIBLE);
                         errorMessage.setText("¡Inténtalo de nuevo! Este ecosistema no es correcto.");
+
+                        // Usar un Handler para hacer que el mensaje desaparezca después de 1-2 segundos
+                        new Handler().postDelayed(() -> {
+                            errorMessage.setVisibility(View.GONE);
+                        }, 1500); // 1500 milisegundos (1.5 segundos)
+
                         draggedCard.setVisibility(View.VISIBLE);
                     }
                     return true;
@@ -154,7 +161,7 @@ public class EcosistemaAct extends AppCompatActivity {
             // Redirigir a EcosistemaMatching tras completar el juego
             Intent intent = new Intent(EcosistemaAct.this, EcosistemaSound.class);
             startActivity(intent);
-            finish(); // Finalizar esta actividad
+            finish();
         }
     }
 }

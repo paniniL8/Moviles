@@ -10,4 +10,6 @@
     <color name="primary_green">#4CAF50</color>
     <color name="primary_red">#F44336</color>
     <color name="progress_gray">#2C3E50</color>
+    <color name="obstaculo">#6495ED</color>
+
 </resources>

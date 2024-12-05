@@ -125,19 +125,12 @@
 
     </LinearLayout>
 
-    <!-- Imagen del planeta -->
-    <ImageView
-        android:id="@+id/planetImage"
-        android:layout_width="192dp"
-        android:layout_height="154dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp" />
 
     <!-- Card que contiene la pregunta y opciones -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="65dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="10dp"
         app:cardBackgroundColor="#80000000">
@@ -146,7 +139,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:layout_marginTop="45dp">
 
             <TextView
                 android:id="@+id/questionText"

@@ -12,7 +12,7 @@ public class DBSQLite extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "UserDatabase";
     public static final String TABLE_USUARIOS = "usuarios";
     public static final String TABLE_SESION = "sesion_actual";
-    public static final int DATABASE_VERSION = 3; // Cambia a la siguiente versión si es necesario
+    public static final int DATABASE_VERSION = 3;
 
     // Constructor
     public DBSQLite(Context context) {
@@ -26,15 +26,15 @@ public class DBSQLite extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre TEXT NOT NULL, " +
                 "edad INTEGER NOT NULL, " +
-                "nivel INTEGER DEFAULT 0)"; // Agregado el campo 'nivel'
+                "nivel INTEGER DEFAULT 0)";
 
         String createTableSesion = "CREATE TABLE sesion_actual (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "usuario_id INTEGER NOT NULL, " +
                 "nombre TEXT NOT NULL, " +
                 "edad INTEGER NOT NULL, " +
-                "nivel INTEGER DEFAULT 0, " + // Se añadió 'nivel' a la sesión actual
-                "FOREIGN KEY (usuario_id) REFERENCES usuarios(id))"; // Aseguramos la relación con 'usuarios'
+                "nivel INTEGER DEFAULT 0, " +
+                "FOREIGN KEY (usuario_id) REFERENCES usuarios(id))";
 
         db.execSQL(createTableUsuarios);
         db.execSQL(createTableSesion);
@@ -56,7 +56,7 @@ public class DBSQLite extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("nombre", nombre);
         values.put("edad", edad);
-        values.put("nivel", nivel); // Almacenar el nivel
+        values.put("nivel", nivel);
 
         long userId = db.insert(TABLE_USUARIOS, null, values);
         Log.d("DBSQLite", "Usuario guardado con ID: " + userId);
@@ -72,7 +72,7 @@ public class DBSQLite extends SQLiteOpenHelper {
         values.put("usuario_id", userId);
         values.put("nombre", nombre);
         values.put("edad", edad);
-        values.put("nivel", nivel); // Guardar nivel
+        values.put("nivel", nivel);
 
         long result = db.insert(TABLE_SESION, null, values);
         if (result != -1) {
@@ -105,7 +105,7 @@ public class DBSQLite extends SQLiteOpenHelper {
     // Obtener nivel de usuario
     public int obtenerNivelActual(String nombre) {
         SQLiteDatabase db = this.getReadableDatabase();
-        int nivel = 0; // Nivel por defecto
+        int nivel = 0;
 
         try (Cursor cursor = db.rawQuery(
                 "SELECT nivel FROM " + TABLE_USUARIOS + " WHERE nombre = ?",
